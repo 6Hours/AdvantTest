@@ -20,6 +20,9 @@ public class MainScreen : MonoBehaviour
         {
             Instantiate(prefab, container).SetItem(business);
         }
+        prefab.gameObject.SetActive(false);
+
+        OnBalanceChanged(GameData.Instance.Balance);
     }
 
     private void OnDestroy()
@@ -29,6 +32,6 @@ public class MainScreen : MonoBehaviour
 
     private void OnBalanceChanged(int value)
     {
-        balanceText.text = value.ToString();
+        balanceText.text = string.Format("Balance: {0}$", value.ToString());
     }
 }

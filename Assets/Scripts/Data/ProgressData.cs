@@ -35,6 +35,12 @@ namespace Data
             //progress
             BinarySerialFileService.LoadFromFile(ref progressData, "Progress");
 
+            if(progressData.Items == null || progressData.Items.Count == 0)
+            {
+                progressData.Items = new List<BusinessItem.BusinessProgressData> {
+                new BusinessItem.BusinessProgressData(1, 1, false, false, 0f)};
+            }
+
             foreach(var model in Models)
             {
                 if (progressData.Items.Any(item => item.Id == model.Id))

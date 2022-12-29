@@ -71,12 +71,12 @@ namespace UI
 
             profitText.text = string.Format("Profit\n{0}", item.Profit);
 
-            levelUpBtn.interactable = GameData.Instance.Balance > item.LevelUpCost;
+            levelUpBtn.interactable = GameData.Instance.Balance >= item.LevelUpCost;
             levelUpBtnText.text = string.Format("LVL UP\nCost: {0}", item.LevelUpCost);
 
             //First modification
             modify1Btn.interactable = !item.FirstModifyIsBuying && 
-                GameData.Instance.Balance > item.Model.FirstModify.Cost && 
+                GameData.Instance.Balance >= item.Model.FirstModify.Cost && 
                 item.Level > 0;
 
             modify1BtnText.text = string.Format(
@@ -87,7 +87,7 @@ namespace UI
 
             //Second modification
             modify2Btn.interactable = !item.SecondModifyIsBuying && 
-                GameData.Instance.Balance > item.Model.SecondModify.Cost && 
+                GameData.Instance.Balance >= item.Model.SecondModify.Cost && 
                 item.Level > 0;
 
             modify2BtnText.text = string.Format(

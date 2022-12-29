@@ -36,9 +36,10 @@ namespace Data
 
             Localization = new Localization();
             Progress = new ProgressData();
+
             Balance = PlayerPrefs.GetInt("Balance", 0);
         }
-        private void OnApplicationQuit()
+        private void OnDestroy()
         {
             Progress.SaveData();
             PlayerPrefs.SetInt("Balance", Balance);

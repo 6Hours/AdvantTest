@@ -22,7 +22,7 @@ namespace Data.ScriptableObjects
         [SerializeField] private ModifyData secondModify;
 
         public int Id => id;
-        public string NameId => NameId;
+        public string NameId => nameId;
         public int BaseProfitDelay => baseProfitDelay;
         public int BaseCost => baseCost;
         public int BaseProfit => baseProfit;
