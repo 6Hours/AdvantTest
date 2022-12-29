@@ -11,14 +11,16 @@ namespace Data
         [Serializable]
         public struct BusinessProgressData
         {
+            public int Id;
             public int Level;
             public float ProfitProgress;
-            public bool FirstModifyIsBuying { get; private set; }
-            public bool SecondModifyIsBuying { get; private set; }
+            public bool FirstModifyIsBuying;
+            public bool SecondModifyIsBuying;
 
 
-            public BusinessProgressData(int _level, bool _firstIsBuying, bool _secondIsBuying, float _profitProgress)
+            public BusinessProgressData(int _id,int _level, bool _firstIsBuying, bool _secondIsBuying, float _profitProgress)
             {
+                Id = _id;
                 Level = _level;
                 FirstModifyIsBuying = _firstIsBuying;
                 SecondModifyIsBuying = _secondIsBuying;
@@ -31,6 +33,7 @@ namespace Data
         
         public BusinessScriptableObject Model { get; private set; }
         public Action OnChange;
+
         private BusinessProgressData dynamicData;
 
         #endregion
@@ -45,7 +48,10 @@ namespace Data
         
         public int LevelUpCost => Mathf.FloorToInt((dynamicData.Level + 1) * Model.BaseCost);
         
-        public float ProfitPercent
+        public bool FirstModifyIsBuying => dynamicData.FirstModifyIsBuying;
+        public bool SecondModifyIsBuying => dynamicData.SecondModifyIsBuying;
+
+        public float ProfitProgressTime
         {
             get => dynamicData.ProfitProgress;
             set
@@ -64,6 +70,16 @@ namespace Data
         }
 
         public void LevelUp()
+        {
+            //if(LevelUpCost > )
+        }
+
+        public void BuyFirstModify()
+        {
+            //if(LevelUpCost > )
+        }
+
+        public void BuySecondModify()
         {
             //if(LevelUpCost > )
         }
