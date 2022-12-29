@@ -17,7 +17,6 @@ namespace Data
             public bool FirstModifyIsBuying;
             public bool SecondModifyIsBuying;
 
-
             public BusinessProgressData(int _id,int _level, bool _firstIsBuying, bool _secondIsBuying, float _profitProgress)
             {
                 Id = _id;
@@ -57,6 +56,11 @@ namespace Data
             set
             {
                 dynamicData.ProfitProgress = Mathf.Clamp(value, 0f, Model.BaseProfitDelay);
+                if(dynamicData.ProfitProgress == Model.BaseProfitDelay)
+                {
+                    GameData.Instance.Balance += Profit;
+                    dynamicData.ProfitProgress = 0f;
+                }
                 OnChange?.Invoke();
             }
         }
@@ -71,17 +75,20 @@ namespace Data
 
         public void LevelUp()
         {
-            //if(LevelUpCost > )
+            GameData.Instance.Balance -= LevelUpCost;
+            dynamicData.Level += 1;
         }
 
         public void BuyFirstModify()
         {
-            //if(LevelUpCost > )
+            GameData.Instance.Balance -= Model.FirstModify.Cost;
+            dynamicData.FirstModifyIsBuying = true;
         }
 
         public void BuySecondModify()
         {
-            //if(LevelUpCost > )
+            GameData.Instance.Balance -= Model.SecondModify.Cost;
+            dynamicData.SecondModifyIsBuying = true;
         }
     }
 }

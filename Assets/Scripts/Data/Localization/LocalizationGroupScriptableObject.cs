@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LocalizationGroupScriptableObject : MonoBehaviour
+namespace Data.LocalizationField.ScriptableObjects
 {
-    // Start is called before the first frame update
-    void Start()
+    [CreateAssetMenu(fileName = "LocalizationGroup", menuName = "Localization")]
+    public class LocalizationGroupScriptableObject : ScriptableObject
     {
-        
-    }
+        [System.Serializable]
+        public struct LocalizationKeyStruct
+        {
+            public string Key;
+            public string Value;
+        }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public LocalizationKeyStruct[] Pairs;
     }
 }

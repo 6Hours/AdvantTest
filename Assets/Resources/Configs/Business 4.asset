@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afb4fbc10672b1044bb65291b0a89946, type: 3}
+  m_Name: Business 4
+  m_EditorClassIdentifier: 
+  id: 4
+  nameId: Fourth_Name
+  baseProfitDelay: 17
+  baseCost: 1000
+  baseProfit: 1000
+  firstModify:
+    NameId: Fourth_1modify
+    Cost: 15000
+    ProfitPercent: 100
+  secondModify:
+    NameId: Fourth_2modify
+    Cost: 50000
+    ProfitPercent: 200

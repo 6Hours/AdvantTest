@@ -1,6 +1,4 @@
 using Data;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -39,7 +37,6 @@ namespace UI
                 if (item.Level > 0)
                 {
                     item.ProfitProgressTime += Time.deltaTime;
-
                 }
                 UpdateView();
             }
@@ -48,6 +45,7 @@ namespace UI
         public void SetItem(BusinessItem _item)
         {
             item = _item;
+            nameText.text = GameData.Instance.Localization[item.Model.NameId];
         }
 
         private void LevelUpPress()
@@ -75,20 +73,28 @@ namespace UI
 
             levelUpBtn.interactable = GameData.Instance.Balance > item.LevelUpCost;
             levelUpBtnText.text = string.Format("LVL UP\nCost: {0}", item.LevelUpCost);
-            //Modification
-            modify1Btn.interactable = !item.FirstModifyIsBuying && GameData.Instance.Balance > item.Model.FirstModify.Cost;
+
+            //First modification
+            modify1Btn.interactable = !item.FirstModifyIsBuying && 
+                GameData.Instance.Balance > item.Model.FirstModify.Cost && 
+                item.Level > 0;
+
             modify1BtnText.text = string.Format(
-                "{0}\nProfit {1}\nCost: {2}", 
-                item.Model.FirstModify.NameId,
+                "{0}\nProfit: +{1}%\nCost: {2}", 
+                GameData.Instance.Localization[item.Model.FirstModify.NameId],
                 item.Model.FirstModify.ProfitPercent,
                 item.Model.FirstModify.Cost);
 
-            modify1Btn.interactable = !item.FirstModifyIsBuying && GameData.Instance.Balance > item.Model.SecondModify.Cost;
-            modify1BtnText.text = string.Format(
-                "{0}\nProfit {1}\nCost: {2}",
-                item.Model.FirstModify.NameId,
-                item.Model.FirstModify.ProfitPercent,
-                item.Model.FirstModify.Cost);
+            //Second modification
+            modify2Btn.interactable = !item.SecondModifyIsBuying && 
+                GameData.Instance.Balance > item.Model.SecondModify.Cost && 
+                item.Level > 0;
+
+            modify2BtnText.text = string.Format(
+                "{0}\nProfit: +{1}%\nCost: {2}",
+                GameData.Instance.Localization[item.Model.SecondModify.NameId],
+                item.Model.SecondModify.ProfitPercent,
+                item.Model.SecondModify.Cost);
         }
     }
 }

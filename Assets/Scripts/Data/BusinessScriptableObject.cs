@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Data.ScriptableObjects
@@ -8,7 +5,7 @@ namespace Data.ScriptableObjects
     [CreateAssetMenu(fileName = "Business", menuName = "Business Config")]
     public class BusinessScriptableObject : ScriptableObject
     {
-        [Serializable]
+        [System.Serializable]
         public struct ModifyData
         {
             public string NameId;

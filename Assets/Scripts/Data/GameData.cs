@@ -1,3 +1,4 @@
+using Data.LocalizationField;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -35,12 +36,12 @@ namespace Data
 
             Localization = new Localization();
             Progress = new ProgressData();
-
-
+            Balance = PlayerPrefs.GetInt("Balance", 0);
         }
         private void OnApplicationQuit()
         {
-            
+            Progress.SaveData();
+            PlayerPrefs.SetInt("Balance", Balance);
         }
     }
 }
