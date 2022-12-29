@@ -22,8 +22,9 @@ namespace Data
         public int Balance
         {
             get { return balance; }
-            set { 
-                balance = value < 0? 0 : value;
+            set
+            {
+                balance = value < 0 ? 0 : value;
                 OnBalanceChange?.Invoke(balance);
             }
         }
@@ -39,10 +40,18 @@ namespace Data
 
             Balance = PlayerPrefs.GetInt("Balance", 0);
         }
+# if UNITY_EDITOR
         private void OnDestroy()
         {
             Progress.SaveData();
             PlayerPrefs.SetInt("Balance", Balance);
         }
+#else
+        private void OnApplicationPause()
+        {
+            Progress.SaveData();
+            PlayerPrefs.SetInt("Balance", Balance);
+        }
+#endif
     }
 }
